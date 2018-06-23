@@ -1,16 +1,54 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {RouterModule, Routes} from '@angular/router';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+import {HttpClientModule} from '@angular/common/http';
+import {AdunitService} from './adunit.service';
 import { AppComponent } from './app.component';
+import { CreateComponent } from './components/create/create.component';
+import { IndexComponent } from './components/index/index.component';
+import { EditComponent } from './components/edit/edit.component';
+import {ReactiveFormsModule} from '@angular/forms';
+
+
+const routes: Routes =[
+
+  {
+    path:'create',
+    component:CreateComponent
+  },
+  {
+    path:'index',
+    component:IndexComponent
+  },
+  {
+    path:'edit/:id',
+    component:EditComponent
+  }
+        
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateComponent,
+    IndexComponent,
+    EditComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    SlimLoadingBarModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AdunitService],
   bootstrap: [AppComponent]
+
 })
-export class AppModule { }
+export class AppModule { 
+
+}
+
+
+
